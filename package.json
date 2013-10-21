@@ -1,0 +1,35 @@
+{
+    "name": "sails-starter-app",
+    "private": true,
+    "version": "0.0.1",
+    "description": "",
+    "dependencies": {
+        "sails": "0.9.7",
+        "grunt": "0.4.1",
+        "sails-disk": "~0.9.0",
+        "sails-mongo": "~0.9.x",
+        "ejs": "0.8.4",
+        "optimist": "0.3.4",
+        "bcrypt": "0.7.x",
+        "node-uuid": "1.4.x",
+        "passport": "0.1.x",
+        "passport-http": "0.2.x",
+        "passport-local": "0.1.x",
+        "passport-remember-me": "0.0.x",
+        "lodash": "2.2.x"
+    },
+    "devDependencies": {
+        "mocha": "1.13.x",
+        "must": "0.6.x",
+        "supertest": "0.8.x"
+    },
+    "scripts": {
+        "start": "node app.js",
+        "debug": "node debug app.js",
+        "test": "NODE_ENV=test mocha test --recursive"
+    },
+    "main": "app.js",
+    "repository": "",
+    "author": "",
+    "license": ""
+}
