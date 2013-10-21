@@ -9,6 +9,7 @@ Out of the box:
 * User authentication using Passport
 * "Remember Me" functionality
 * CRSF protection
+* Separate API from "regular" routes - API routes are namespaced under /api/v1
 * All of the above are covered with tests (and you can add your own)!
 
 ### Get started:
@@ -20,9 +21,9 @@ Out of the box:
 
 #### Where is the login/new account etc page???
 
-Oops, there aren't any. My ideas was to provide a "view-less" starter app that only has JSON-based API. You can use POSTman - or your browser's console to issue AJAX requests.
+Oops, there aren't any. My idea was to provide a "view-less" starter app that only has JSON-based API. You can use POSTman - or your browser's console to issue AJAX requests.
 
-Please note: you need to first create a user account vefore you can try logging in. To do that simply send a POST request to `/api/v1/users` with email, password, passwordConfirmation and the _csrf token. To get the csrf token, do `GET /csrfToken`.
+Please note: you need to first create a user account before you can try logging in. To do that simply send a POST request to `/api/v1/users` with email, password, passwordConfirmation and the _csrf token. To get the csrf token, do `GET /csrfToken`.
 
 After you've done this, you can try logging in with your credentials by doing
 
