@@ -18,6 +18,16 @@ Out of the box:
     npm install
     sails lift
 
+#### Where is the login/new account etc page???
+
+Oops, there aren't any. My ideas was to provide a "view-less" starter app that only has JSON-based API. You can use POSTman - or your browser's console to issue AJAX requests.
+
+Please note: you need to first create a user account vefore you can try logging in. To do that simply send a POST request to `/api/v1/users` with email, password, passwordConfirmation and the _csrf token. To get the csrf token, do `GET /csrfToken`.
+
+After you've done this, you can try logging in with your credentials by doing
+
+    POST /session //... add your POST data (email and password)
+
 ### Tests
 
 The User model and session controller are covered by tests. You can run them with:
