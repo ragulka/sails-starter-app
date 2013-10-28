@@ -18,12 +18,18 @@ module.exports.policies = {
   // (`true` allows public access) 
   '*': 'isAuthenticated',
 
-  'session': {
-  	'*': true
+  session: {
+    '*': true
   },
 
-  'user': {
-  	create: true
+  user: {
+    create: true,
+    update: ['isAuthenticated','preventApiKeyUpdate']
+  },
+
+  passwordReset: {
+    create: true,
+    update: true
   }
 
   /*

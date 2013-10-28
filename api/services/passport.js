@@ -9,13 +9,13 @@ var passport = require( "passport" ),
 
 /** Passport session setup. */
 
-passport.serializeUser( function (user, done) {
-  done(null, user.id);
+passport.serializeUser( function (user, cb) {
+  cb(null, user.id);
 });
 
-passport.deserializeUser( function (userId, done) {
+passport.deserializeUser( function (userId, cb) {
   User.findOneById(userId, function (err, user) {
-    done(err, user);
+    cb(err, user);
   });
 });
 
@@ -27,25 +27,25 @@ passport.deserializeUser( function (userId, done) {
 
 passport.use( new LocalStrategy(
   { usernameField: 'email' },
-  function (email, password, done) {
-    User.findOneByEmail( email, function ( err, user ) {
-      if(err) return done( err );
+  function (email, password, cb) {
+    User.findOneByEmail( email, function (err, user) {
+      if(err) return cb(err);
       
       // No user was found
       if(!user) {
-        return done( null, false, { message: 'Unknown user' } );
+        return cb(null, false, { message: 'Unknown user' });
       }
 
       // Validate user password
-      user.validatePassword( password, function ( err, isValid ) {
-        if(err) return done( err );
+      user.validatePassword( password, function (err, isValid) {
+        if(err) return cb(err);
 
         // If the password was not valid
         if(!isValid)
-          return done( null, false, { message: 'Invalid password' } );
+          return cb(null, false, { message: 'Invalid password' });
         
         // We are successfully authenticated, return the user instance
-        done( null, user );
+        cb(null, user);
       });
     });
   }
@@ -60,9 +60,9 @@ passport.use( new LocalStrategy(
  */
 
 passport.use(new RememberMeStrategy(
-  function (token, done) {
+  function (token, cb) {
     User.consumeSessionToken(token, function (err, user) {
-      done( err, user );
+      cb(err, user);
     });
   },
   User.issueSessionToken
@@ -72,16 +72,16 @@ passport.use(new RememberMeStrategy(
  * Passport Basic HTTP Auth Startegy
  */
 
-passport.use(new BasicStrategy( function (apiKey, password, done) {
+passport.use(new BasicStrategy( function (apiKey, password, cb) {
   if (apiKey !== password) {
-    return done( new Error( "API key and password do not match" ) );
+    return cb( new Error( "API key and password do not match" ) );
   }
   // Find the user by API key.  If there is no user with the given
   // API key, or the password is not correct, set the user to `false` to
   // indicate failure.  Otherwise, return the authenticated `user`.
-  User.findByApiKey( apiKey, function (err, user) {
-    if (err) return done( err );
-    if (!user) return done( null, false, { message: 'Invalid or unknown API key' } );
-    done( null, user );
+  User.findOneByApiKey( apiKey, function (err, user) {
+    if (err) return cb(err);
+    if (!user) return cb( null, false, { message: 'Invalid or unknown API key' } );
+    cb(null, user);
   });
 }));

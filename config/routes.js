@@ -34,6 +34,16 @@ module.exports.routes = {
   // (This would also work if you had a file at: `/views/home.ejs`)
   '/': {
     view: 'home/index'
+  },
+
+  'post /password-reset' : {
+    controller: 'passwordReset',
+    action: 'create', 
+  },
+
+  'put /password-reset/:id?' : {
+    controller: 'passwordReset',
+    action: 'update'
   }
 
   /*

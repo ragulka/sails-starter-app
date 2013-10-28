@@ -4,7 +4,6 @@ var sails = require('sails'),
     Db = require('../node_modules/sails-mongo/node_modules/mongodb').Db;
 
 global.request = require('supertest');
-global.localAppURL = null;
 
 function createConnection(config, cb) {
   var safe = config.safe ? 1 : 0;
@@ -37,25 +36,6 @@ before(function (done) {
   this.timeout(10000);
   sails.lift({ port: 7357 }, function (err, sails) {
     dropDb(function() {
-
-      // Check if tests run on SSL
-      var usingSSL = (
-        (
-          sails.config.serverOptions && 
-          sails.config.serverOptions.key &&
-          sails.config.serverOptions.cert
-        ) || (
-          sails.config.express && 
-          sails.config.express.serverOptions && 
-          sails.config.express.serverOptions.key && 
-          sails.config.express.serverOptions.cert 
-        )
-      );
-
-      // Compose the local app url
-      localAppURL = ( usingSSL ? 'https' : 'http' ) + '://' + sails.config.host + ':' + sails.config.port + '';
-
-      // All done, we con now run tests!
       done();
     });
   });

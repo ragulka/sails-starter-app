@@ -1,7 +1,7 @@
 {
     "name": "sails-starter-app",
     "private": true,
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "",
     "dependencies": {
         "sails": "0.9.7",
@@ -16,7 +16,11 @@
         "passport-http": "0.2.x",
         "passport-local": "0.1.x",
         "passport-remember-me": "0.0.x",
-        "lodash": "2.2.x"
+        "lodash": "2.2.x",
+        "nodemailer": "0.5.x",
+        "email-templates": "0.1.x",
+        "kue": "0.6.x",
+        "async": "0.2.x"
     },
     "devDependencies": {
         "mocha": "1.13.x",

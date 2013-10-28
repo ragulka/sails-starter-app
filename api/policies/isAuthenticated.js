@@ -7,12 +7,21 @@
  * @docs        :: http://sailsjs.org/#!documentation/policies
  *
  */
+var passport = require('passport');
+
 module.exports = function(req, res, next) {
 
-  // User is authetnticated/authorized, proceed to controller
+  // User is authenticated, proceed to controller
   if (req.isAuthenticated()) return next();
 
-  // User is not authetnticated/authorized
-  res.send(401, { status: "Not authorized" });
+  // Try authenticating user with API key
+  passport.authenticate('basic', { session: false }, function (err, user, info) {
+    if (err) return res.serverError(err);
+
+    if (!user) return res.send(401, { status: "Not authorized" });
+
+    req.user = user;
+    next();
+  })(req, res, next);
 
 };

@@ -26,21 +26,21 @@ module.exports = {
 
   create: function(req, res, next) {
     passport.authenticate('local', function (err, user, info) {
-      if (err) return res.send(500, err);
+      if (err) return res.serverError(err);
       
       // Authentication failed
-      if (!user) return res.send(400, { err: info.message });
+      if (!user) return res.badRequest(info);
 
       // Log the user in
       req.logIn(user, function (err) {
-        if(err) res.send(500, err);
+        if(err) return res.serverError(err);
 
         // Just return user JSON if remember me was not specified
         if (!req.body.remember) return res.send(user.toJSON());
 
         // If remember me option was specified, issue a session token
         User.issueSessionToken( user, function (err, token) {
-          if(err) return res.send(500, err);
+          if(err) return res.serverError(err);
           res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 60*60*24*30 });
           // ... and return user data as JSON
           res.send(user.toJSON());
@@ -54,13 +54,13 @@ module.exports = {
    * Destroy a session (log out user)
    */
 
-  destroy: function(req, res) {
+  destroy: function(req, res, next) {
     if (!req.user) return res.send();
 
     // Clear user's session tokens
     req.user.sessionTokens = [];
     req.user.save(function (err) {
-      if(err) return res.send(500, err);
+      if(err) return res.serverError(err);
 
       // Clear user's remember_me cookie
       res.clearCookie('remember_me');
