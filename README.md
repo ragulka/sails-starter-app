@@ -8,7 +8,9 @@ Out of the box:
 * User model with attributes that make sense
 * User authentication using Passport
 * "Remember Me" functionality
+* Password reset
 * CRSF protection
+* Use Kue for running background jobs (such as sending password reset instructions)
 * Separate API from "regular" routes - API routes are namespaced under /api/v1
 * All of the above are covered with tests (and you can add your own)!
 
