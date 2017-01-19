@@ -38,7 +38,7 @@ The User model and session controller are covered by tests. You can run them wit
     npm test
 
 
-This starter app uses [Mocha](http://visionmedia.github.io/mocha/) test framework (BDD style) and the wonderful [Must](https://github.com/moll/js-must) assertion library.
+This starter app uses [Mocha](http://mochajs.org/) test framework (BDD style) and the wonderful [Must](https://github.com/moll/js-must) assertion library.
 
 If you want to add your own tests (for other models, etc), just add them to the `test` folder. Also note that the test databse is flushed of all data before and after running the test suite (using `test/bootstrap.js`).
 
