@@ -8,7 +8,7 @@
         "grunt": "0.4.1",
         "sails-disk": "~0.9.0",
         "sails-mongo": "~0.9.x",
-        "ejs": "0.8.4",
+        "ejs": "2.7.2",
         "optimist": "0.3.4",
         "bcrypt": "0.7.x",
         "node-uuid": "1.4.x",
