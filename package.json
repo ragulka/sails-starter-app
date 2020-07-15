@@ -16,7 +16,7 @@
         "passport-http": "0.2.x",
         "passport-local": "0.1.x",
         "passport-remember-me": "0.0.x",
-        "lodash": "2.2.x",
+        "lodash": "4.17.x",
         "nodemailer": "0.5.x",
         "email-templates": "0.1.x",
         "kue": "0.6.x",
