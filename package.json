@@ -10,7 +10,7 @@
         "sails-mongo": "~0.9.x",
         "ejs": "0.8.4",
         "optimist": "0.3.4",
-        "bcrypt": "0.7.x",
+        "bcrypt": "5.0.x",
         "node-uuid": "1.4.x",
         "passport": "0.1.x",
         "passport-http": "0.2.x",
